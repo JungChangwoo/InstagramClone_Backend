@@ -1,7 +1,11 @@
 package instagram_clone.instagram_clone.controller;
 
+import instagram_clone.instagram_clone.config.BaseException;
+import instagram_clone.instagram_clone.controller.dto.LoginRequest;
+import instagram_clone.instagram_clone.controller.dto.LoginResponse;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.service.UserService;
+import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final JwtService jwtService;
 
     @GetMapping("/users")
     public List<UserDto> members(){
@@ -25,12 +30,23 @@ public class UserController {
         return collect;
     }
 
-    @PostMapping("/users")
-    public CreateUserResponse saveUser(@RequestBody CreateUserRequest request){
+    @PostMapping("/users/login")
+    public LoginResponse login(@RequestBody LoginRequest request) throws BaseException {
+        // 닉네임 공백 처리
+        // 비밀번호 공백 처리
+        LoginResponse loginResponse= userService.login(request);
+        return loginResponse;
+    }
+
+    @PostMapping("/users/join")
+    public CreateUserResponse saveUser(@RequestBody CreateUserRequest request) throws BaseException {
         User user = new User();
-        user.setName(request.getName());
         user.setNickname(request.getNickname());
         user.setPassword(request.getPassword());
+        user.setName(request.getName());
+        user.setBirth(request.getBirth());
+        user.setPhone(request.getPhone());
+        user.setEmail(request.getEmail());
         Long id = userService.join(user);
         return new CreateUserResponse(id);
     }
@@ -63,6 +79,9 @@ public class UserController {
         private String nickname;
         private String password;
         private String name;
+        private String birth;
+        private String phone;
+        private String email;
     }
 
     @Data
@@ -82,4 +101,19 @@ public class UserController {
         private Long id;
         private String name;
     }
+
+    @Data
+    static class CreateUserRequest2{
+        private String nickname;
+        private String password;
+        private String name;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class CreateUserResponse2{
+        private Long id;
+    }
+
+
 }

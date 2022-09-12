@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository {
@@ -22,13 +23,19 @@ public class UserRepository {
         return em.find(User.class, id);
     }
 
-    public List<User> findByNickname(String nickname) {
+    public Optional<User> findByNickname(String nickname) {
         return em.createQuery("select u from User u where u.nickname = : nickname", User.class)
                 .setParameter("nickname", nickname)
-                .getResultList();
+                .getResultList().stream().findAny();
     }
 
     public void save(User user) {
         em.persist(user);
+    }
+
+    public List<User> findByEmail(String email) {
+        return em.createQuery("select u from User u where u.email = : email", User.class)
+                .setParameter("email", email)
+                .getResultList();
     }
 }

@@ -28,6 +28,8 @@ public class User {
 
     private String email;
 
+    private String birth;
+
     private String website;
 
     private String introduce;
