@@ -30,4 +30,20 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+
+    //==연관관계 메서드==//
+    public void addPostImgUrl(PostImgUrl postImgUrl){
+        postImgUrls.add(postImgUrl);
+        postImgUrl.setPost(this);
+    }
+
+    public static Post createPost(User user, String content, List<PostImgUrl> postImgUrls){
+        Post post = new Post();
+        post.setUser(user);
+        post.setContent(content);
+        for (PostImgUrl postImgUrl : postImgUrls){
+            post.addPostImgUrl(postImgUrl);
+        }
+        return post;
+    }
 }

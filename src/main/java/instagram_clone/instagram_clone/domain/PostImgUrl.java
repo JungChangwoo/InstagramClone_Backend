@@ -23,4 +23,12 @@ public class PostImgUrl {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    //==연관관계 메서드==//
+    public static PostImgUrl createPostImgUrl(String postImgUrlString) {
+        PostImgUrl postImgUrl = new PostImgUrl();
+        postImgUrl.setUrl(postImgUrlString);
+
+        return postImgUrl;
+    }
 }
