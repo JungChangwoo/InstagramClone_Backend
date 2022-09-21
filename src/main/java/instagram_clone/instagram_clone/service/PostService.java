@@ -23,8 +23,8 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
-    public List<Post> findHomeFeeds(Long id) {
-        return postRepository.findAllById(id);
+    public List<Post> findHomeFeeds(Long userId) {
+        return postRepository.findAllById(userId);
     }
 
     @Transactional
@@ -41,5 +41,16 @@ public class PostService {
 
         postRepository.save(post);
         return post.getId();
+    }
+
+    @Transactional
+    public Long update(Long postId, String content) {
+        Post post = postRepository.findById(postId);
+        post.setContent(content);
+        return post.getId();
+    }
+
+    public Post findOne(Long postId) {
+        return postRepository.findById(postId);
     }
 }

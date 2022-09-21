@@ -23,4 +23,8 @@ public class PostRepository {
     public void save(Post post) {
         em.persist(post);
     }
+
+    public Post findById(Long postId) {
+        return em.find(Post.class, postId);
+    }
 }

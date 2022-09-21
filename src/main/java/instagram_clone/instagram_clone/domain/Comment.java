@@ -25,4 +25,12 @@ public class Comment {
     private Post post;
 
     private String content;
+
+    public static Comment createComment(User user, Post post, String content) {
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setPost(post);
+        comment.setContent(content);
+        return comment;
+    }
 }

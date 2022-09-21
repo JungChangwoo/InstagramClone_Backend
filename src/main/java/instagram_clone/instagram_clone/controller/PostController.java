@@ -2,6 +2,7 @@ package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.controller.dto.HomeFeedRequest;
+import instagram_clone.instagram_clone.domain.Comment;
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.PostImgUrl;
 import instagram_clone.instagram_clone.service.PostService;
@@ -24,7 +25,7 @@ public class PostController {
     @GetMapping("/posts/{id}/main-feed")
     public List<HomeFeedResponse> getHomeFeed(@PathVariable("id") Long id, @RequestBody HomeFeedRequest request) throws BaseException {
         Long idByJwt = jwtService.getUserIdx();
-
+        //==팔로워들의 피드를 가져와야 함==//
         List<Post> posts = postService.findHomeFeeds(id);
         List<HomeFeedResponse> collect = posts.stream()
                 .map(o -> new HomeFeedResponse(o))
@@ -33,21 +34,42 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}")
-    public PostResponse postUpload(@PathVariable("id") Long id, @RequestBody PostRequest request){
+    public PostPostResponse postUpload(@PathVariable("id") Long id, @RequestBody PostPostRequest request) {
         Long postId = postService.postUpload(id, request.getPostImages(), request.getContent());
-        PostResponse postResponse = new PostResponse(postId);
+        PostPostResponse postResponse = new PostPostResponse(postId);
         return postResponse;
     }
 
+    @PatchMapping("/posts/{id}")
+    public PatchPostResponse postUpdate(@PathVariable("id") Long id, @RequestBody PatchPostRequest request) {
+        //==해당 User가 작성한 Post가 맞는지==//
+        Long postId = postService.update(request.getPostId(), request.getContent());
+        PatchPostResponse patchPostResponse = new PatchPostResponse(postId);
+        return patchPostResponse;
+    }
+
     @Data
-    static class PostRequest{
+    static class PatchPostRequest{
+        private Long postId;
+        private String content;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class PatchPostResponse{
+        private Long postId;
+    }
+
+
+    @Data
+    static class PostPostRequest {
         private List<String> postImages;
         private String content;
     }
 
     @Data
     @AllArgsConstructor
-    static class PostResponse{
+    static class PostPostResponse {
         private Long postId;
     }
 
