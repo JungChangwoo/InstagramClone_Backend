@@ -114,5 +114,4 @@ public class PostController {
             url = postImgUrl.getUrl();
         }
     }
-
 }
