@@ -23,10 +23,10 @@ public class UserRepository {
         return em.find(User.class, id);
     }
 
-    public Optional<User> findByNickname(String nickname) {
+    public List<User> findByNickname(String nickname) {
         return em.createQuery("select u from User u where u.nickname = : nickname", User.class)
                 .setParameter("nickname", nickname)
-                .getResultList().stream().findAny();
+                .getResultList();
     }
 
     public void save(User user) {

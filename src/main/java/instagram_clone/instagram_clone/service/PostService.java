@@ -1,13 +1,13 @@
 package instagram_clone.instagram_clone.service;
 
-import instagram_clone.instagram_clone.controller.PostController;
+import instagram_clone.instagram_clone.domain.Follow;
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.PostImgUrl;
 import instagram_clone.instagram_clone.domain.User;
+import instagram_clone.instagram_clone.repository.FollowRepository;
 import instagram_clone.instagram_clone.repository.PostRepository;
 import instagram_clone.instagram_clone.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +22,18 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final FollowRepository followRepository;
 
     public List<Post> findHomeFeeds(Long userId) {
-        return postRepository.findAllById(userId);
+        List<Follow> followees = followRepository.findByFromUserId(userId);
+        List<Post> posts = new ArrayList<>();
+        for (Follow follow : followees){
+            List<Post> followeePosts = follow.getToUser().getPosts();
+            for (Post post : followeePosts){
+                posts.add(post);
+            }
+        }
+        return posts;
     }
 
     @Transactional

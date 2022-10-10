@@ -43,6 +43,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    private List<Follow> follows = new ArrayList<>();
+    @OneToMany(mappedBy = "toUser")
+    private List<Follow> followerList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "fromUser")
+    private List<Follow> followingList = new ArrayList<>();
+
 }

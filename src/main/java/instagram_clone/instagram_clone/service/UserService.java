@@ -55,7 +55,7 @@ public class UserService {
         }
     }
     private void validateDuplicateUserNickname(User user) {
-        Optional<User> findUser = userRepository.findByNickname(user.getNickname());
+
     }
 
     @Transactional
@@ -68,8 +68,13 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User findByNickname(String nickname){
+        List<User> user = userRepository.findByNickname(nickname);
+        return user.get(0);
+    }
+
     public LoginResponse login(LoginRequest request) throws BaseException {
-        Optional<User> user = userRepository.findByNickname(request.getNickname());
+        User user = findByNickname(request.getNickname());
         String encryptPwd;
 
         try {
@@ -77,8 +82,8 @@ public class UserService {
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.PASSWORD_ENCRYPTION_ERROR);
         }
-        if (user.get().getPassword().equals(encryptPwd)){
-            Long id = user.get().getId();
+        if (user.getPassword().equals(encryptPwd)){
+            Long id = user.getId();
             String jwt = jwtService.createJwt(id);
             return new LoginResponse(id, jwt);
         } else {

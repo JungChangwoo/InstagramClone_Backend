@@ -24,7 +24,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}/main-feed")
     public List<HomeFeedResponse> getHomeFeed(@PathVariable("id") Long id, @RequestBody HomeFeedRequest request) throws BaseException {
-        Long idByJwt = jwtService.getUserIdx();
+        //Long idByJwt = jwtService.getUserIdx();
         //==팔로워들의 피드를 가져와야 함==//
         List<Post> posts = postService.findHomeFeeds(id);
         List<HomeFeedResponse> collect = posts.stream()
@@ -34,8 +34,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}")
-    public PostPostResponse postUpload(@PathVariable("id") Long id, @RequestBody PostPostRequest request) {
-        Long postId = postService.postUpload(id, request.getPostImages(), request.getContent());
+    public PostPostResponse postUpload(@PathVariable("id") Long userId, @RequestBody PostPostRequest request) {
+        Long postId = postService.postUpload(userId, request.getPostImages(), request.getContent());
         PostPostResponse postResponse = new PostPostResponse(postId);
         return postResponse;
     }
