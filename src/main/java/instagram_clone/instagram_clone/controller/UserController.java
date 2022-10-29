@@ -2,32 +2,30 @@ package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponse;
-import instagram_clone.instagram_clone.controller.dto.LoginRequest;
-import instagram_clone.instagram_clone.controller.dto.LoginResponse;
+import instagram_clone.instagram_clone.controller.dto.user.*;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.service.UserService;
 import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
     private final JwtService jwtService;
 
     @GetMapping("/users")
-    public List<UserDto> members(){
+    public List<GetUserResponse> members(){
         List<User> findUsers = userService.findUsers();
-        List<UserDto> collect = findUsers.stream()
-                .map(m -> new UserDto(m.getId(), m.getNickname(), m.getProfileImgUrl()))
+        List<GetUserResponse> collect = findUsers.stream()
+                .map(m -> new GetUserResponse(m.getId(), m.getNickname(), m.getProfileImgUrl()))
                 .collect(Collectors.toList());
         return collect;
     }
@@ -42,16 +40,7 @@ public class UserController {
 
     @PostMapping("/users/join")
     public BaseResponse<CreateUserResponse> saveUser(@RequestBody CreateUserRequest request) throws BaseException {
-        User user = new User();
-        user.setNickname(request.getNickname());
-        user.setPassword(request.getPassword());
-        user.setName(request.getName());
-        user.setBirth(request.getBirth());
-        user.setPhone(request.getPhone());
-        user.setEmail(request.getEmail());
-        user.setCreatedAt(LocalDateTime.now());
-        user.setUpdatedAt(LocalDateTime.now());
-        Long id = userService.join(user);
+        Long id = userService.join(request);
         return new BaseResponse<>(new CreateUserResponse(id));
     }
 
@@ -63,61 +52,5 @@ public class UserController {
         User findUser = userService.findOne(id);
         return new UpdateUserResponse(findUser.getId(), findUser.getName());
     }
-
-    @Data
-    @AllArgsConstructor
-    static class Result<T>{
-        private T data;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class UserDto{
-        private Long id;
-        private String nickname;
-        private String profileImgUrl;
-    }
-
-    @Data
-    static class CreateUserRequest{
-        private String nickname;
-        private String password;
-        private String name;
-        private String birth;
-        private String phone;
-        private String email;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class CreateUserResponse{
-        private Long id;
-    }
-
-    @Data
-    static class UpdateUserRequest{
-        private String name;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class UpdateUserResponse{
-        private Long id;
-        private String name;
-    }
-
-    @Data
-    static class CreateUserRequest2{
-        private String nickname;
-        private String password;
-        private String name;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class CreateUserResponse2{
-        private Long id;
-    }
-
 
 }

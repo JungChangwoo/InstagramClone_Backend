@@ -2,12 +2,18 @@ package instagram_clone.instagram_clone.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "follow")
 @Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Follow {
 
     @Id @GeneratedValue
@@ -24,6 +30,14 @@ public class Follow {
 
     @Enumerated(EnumType.STRING)
     private FollowStatus status;
+
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
     public Follow(){
     }

@@ -1,4 +1,4 @@
-package instagram_clone.instagram_clone.controller.dto;
+package instagram_clone.instagram_clone.controller.dto.user;
 
 import lombok.Data;
 

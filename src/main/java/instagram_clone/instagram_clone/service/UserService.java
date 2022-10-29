@@ -2,8 +2,9 @@ package instagram_clone.instagram_clone.service;
 
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponseStatus;
-import instagram_clone.instagram_clone.controller.dto.LoginRequest;
-import instagram_clone.instagram_clone.controller.dto.LoginResponse;
+import instagram_clone.instagram_clone.controller.dto.user.LoginRequest;
+import instagram_clone.instagram_clone.controller.dto.user.LoginResponse;
+import instagram_clone.instagram_clone.controller.dto.user.CreateUserRequest;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.repository.UserRepository;
 import instagram_clone.instagram_clone.utils.JwtService;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -28,7 +28,9 @@ public class UserService {
     }
 
     @Transactional
-    public Long join(User user) throws BaseException {
+    public Long join(CreateUserRequest request) throws BaseException {
+        User user = User.createUser(request.getNickname(), request.getPassword(), request.getName(), request.getPhone(), request.getEmail(), request.getBirth());
+
         validateDuplicateUserNickname(user);
         validateDuplicateUserEmail(user);
         String pwd;

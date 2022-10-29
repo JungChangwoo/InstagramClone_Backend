@@ -2,6 +2,9 @@ package instagram_clone.instagram_clone.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +15,7 @@ import java.util.List;
 @Entity
 @Table
 @Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
 
     @Id @GeneratedValue
@@ -27,8 +31,12 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
@@ -50,8 +58,6 @@ public class Post {
         for (PostImgUrl postImgUrl : postImgUrls){
             post.addPostImgUrl(postImgUrl);
         }
-        post.setCreatedAt(LocalDateTime.now());
-        post.setUpdatedAt(LocalDateTime.now());
         return post;
     }
 }

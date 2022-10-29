@@ -2,14 +2,11 @@ package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponseStatus;
-import instagram_clone.instagram_clone.controller.dto.HomeFeedRequest;
-import instagram_clone.instagram_clone.domain.Comment;
+import instagram_clone.instagram_clone.controller.dto.post.HomeFeedRequest;
+import instagram_clone.instagram_clone.controller.dto.post.*;
 import instagram_clone.instagram_clone.domain.Post;
-import instagram_clone.instagram_clone.domain.PostImgUrl;
 import instagram_clone.instagram_clone.service.PostService;
 import instagram_clone.instagram_clone.utils.JwtService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,70 +49,4 @@ public class PostController {
         return patchPostResponse;
     }
 
-    @Data
-    static class PatchPostRequest{
-        private Long postId;
-        private String content;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class PatchPostResponse{
-        private Long postId;
-    }
-
-
-    @Data
-    static class PostPostRequest {
-        private List<String> postImages;
-        private String content;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class PostPostResponse {
-        private Long postId;
-    }
-
-    @Data
-    static class HomeFeedResponse{
-        private PostInfo postInfo;
-        private List<PostImgUrlDto> postImages;
-
-        public HomeFeedResponse(Post post){
-            postInfo = new PostInfo(post);
-            postImages = post.getPostImgUrls().stream()
-                    .map(postImgUrl -> new PostImgUrlDto(postImgUrl))
-                    .collect(Collectors.toList());
-        }
-    }
-
-    @Data
-    static class PostInfo{
-        private Long postId;
-        private String nickname;
-        private String profileImgUrl;
-        private String content;
-        private String where;
-        private int numOfLike;
-        private int numOfComment;
-        private String isLike;
-
-        public PostInfo(Post post){
-            postId = post.getId();
-            nickname = post.getUser().getNickname();
-            profileImgUrl = post.getUser().getProfileImgUrl();
-            content = post.getContent();
-            numOfComment = post.getComments().size();
-        }
-    }
-
-    @Data
-    static class PostImgUrlDto{
-        private String url;
-
-        public PostImgUrlDto(PostImgUrl postImgUrl){
-            url = postImgUrl.getUrl();
-        }
-    }
 }
