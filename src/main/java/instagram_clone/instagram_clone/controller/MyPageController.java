@@ -35,7 +35,7 @@ public class MyPageController {
         return id;
     }
 
-    @PatchMapping("users/{userId}/following/status")
+    @PatchMapping("/users/{userId}/following/status")
     private Long unFollow(
             @PathVariable("userId") Long userId,
             @RequestBody PostFollowRequest request){

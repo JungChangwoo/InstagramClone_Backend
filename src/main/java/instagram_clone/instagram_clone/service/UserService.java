@@ -28,12 +28,6 @@ public class UserService {
     }
 
     @Transactional
-    public Long join2(User user) {
-        userRepository.save(user);
-        return user.getId();
-    }
-
-    @Transactional
     public Long join(User user) throws BaseException {
         validateDuplicateUserNickname(user);
         validateDuplicateUserEmail(user);
@@ -45,6 +39,10 @@ public class UserService {
             throw new BaseException(BaseResponseStatus.PASSWORD_ENCRYPTION_ERROR);
         }
         userRepository.save(user);
+        // JWT 발급
+        Long userId = user.getId();
+        System.out.println("userId: " + userId);
+        jwtService.createJwt(userId);
         return user.getId();
     }
 

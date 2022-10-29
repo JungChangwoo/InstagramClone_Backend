@@ -1,6 +1,7 @@
 package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseException;
+import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.controller.dto.LoginRequest;
 import instagram_clone.instagram_clone.controller.dto.LoginResponse;
 import instagram_clone.instagram_clone.domain.User;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/users/join")
-    public CreateUserResponse saveUser(@RequestBody CreateUserRequest request) throws BaseException {
+    public BaseResponse<CreateUserResponse> saveUser(@RequestBody CreateUserRequest request) throws BaseException {
         User user = new User();
         user.setNickname(request.getNickname());
         user.setPassword(request.getPassword());
@@ -47,8 +49,10 @@ public class UserController {
         user.setBirth(request.getBirth());
         user.setPhone(request.getPhone());
         user.setEmail(request.getEmail());
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         Long id = userService.join(user);
-        return new CreateUserResponse(id);
+        return new BaseResponse<>(new CreateUserResponse(id));
     }
 
     @PutMapping("/users/{id}")

@@ -1,6 +1,7 @@
 package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseException;
+import instagram_clone.instagram_clone.config.BaseResponseStatus;
 import instagram_clone.instagram_clone.controller.dto.HomeFeedRequest;
 import instagram_clone.instagram_clone.domain.Comment;
 import instagram_clone.instagram_clone.domain.Post;
@@ -24,7 +25,6 @@ public class PostController {
 
     @GetMapping("/posts/{id}/main-feed")
     public List<HomeFeedResponse> getHomeFeed(@PathVariable("id") Long id, @RequestBody HomeFeedRequest request) throws BaseException {
-        //Long idByJwt = jwtService.getUserIdx();
         //==팔로워들의 피드를 가져와야 함==//
         List<Post> posts = postService.findHomeFeeds(id);
         List<HomeFeedResponse> collect = posts.stream()
@@ -34,7 +34,11 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}")
-    public PostPostResponse postUpload(@PathVariable("id") Long userId, @RequestBody PostPostRequest request) {
+    public PostPostResponse postUpload(@PathVariable("id") Long userId, @RequestBody PostPostRequest request) throws BaseException {
+        Long userIdByJwt = jwtService.getUserIdx(); // Header에서 JWT 추출
+        if (userId != userIdByJwt){
+            throw new BaseException(BaseResponseStatus.INVALID_USER_JWT);
+        }
         Long postId = postService.postUpload(userId, request.getPostImages(), request.getContent());
         PostPostResponse postResponse = new PostPostResponse(postId);
         return postResponse;

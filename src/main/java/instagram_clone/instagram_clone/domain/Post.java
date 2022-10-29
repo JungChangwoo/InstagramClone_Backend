@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,10 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostImgUrl> postImgUrls = new ArrayList<>();
 
@@ -44,6 +50,8 @@ public class Post {
         for (PostImgUrl postImgUrl : postImgUrls){
             post.addPostImgUrl(postImgUrl);
         }
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(LocalDateTime.now());
         return post;
     }
 }

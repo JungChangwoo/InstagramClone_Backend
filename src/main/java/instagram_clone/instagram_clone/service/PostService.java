@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -27,12 +28,19 @@ public class PostService {
     public List<Post> findHomeFeeds(Long userId) {
         List<Follow> followees = followRepository.findByFromUserId(userId);
         List<Post> posts = new ArrayList<>();
-        for (Follow follow : followees){
+        for (Follow follow : followees) {
             List<Post> followeePosts = follow.getToUser().getPosts();
-            for (Post post : followeePosts){
+            for (Post post : followeePosts) {
                 posts.add(post);
             }
         }
+        User user = userRepository.findById(userId);
+        List<Post> userPosts = user.getPosts();
+        for (Post post : userPosts){
+            posts.add(post);
+        }
+        // update 순서대로
+        posts.sort((d1, d2) -> d1.getUpdatedAt().compareTo(d2.getUpdatedAt()));
         return posts;
     }
 
