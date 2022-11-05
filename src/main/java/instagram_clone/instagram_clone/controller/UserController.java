@@ -1,13 +1,14 @@
 package instagram_clone.instagram_clone.controller;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponse;
+import instagram_clone.instagram_clone.controller.dto.user.UpdateUserNicknameRequest;
+import instagram_clone.instagram_clone.controller.dto.user.UpdateUserNicknameResponse;
 import instagram_clone.instagram_clone.controller.dto.user.*;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.service.UserService;
 import instagram_clone.instagram_clone.utils.JwtService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,14 @@ public class UserController {
     public BaseResponse<CreateUserResponse> saveUser(@RequestBody CreateUserRequest request) throws BaseException {
         Long id = userService.join(request);
         return new BaseResponse<>(new CreateUserResponse(id));
+    }
+
+    @PatchMapping("/users/{userId}/nickname")
+    public BaseResponse<UpdateUserNicknameResponse> updateNickname(
+        @PathVariable("userId") Long userId,
+        @RequestBody UpdateUserNicknameRequest request){
+        Long id = userService.updateNickname(userId, request.getNickname());
+        return new BaseResponse<>(new UpdateUserNicknameResponse(id));
     }
 
     @PutMapping("/users/{id}")

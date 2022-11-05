@@ -90,4 +90,11 @@ public class UserService {
             throw new BaseException(BaseResponseStatus.FAILED_TO_LOGIN);
         }
     }
+
+    @Transactional
+    public Long updateNickname(Long userId, String nickname) {
+        User user = userRepository.findById(userId);
+        user.setNickname(nickname);
+        return user.getId();
+    }
 }
