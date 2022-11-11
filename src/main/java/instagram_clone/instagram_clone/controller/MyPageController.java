@@ -1,5 +1,6 @@
 package instagram_clone.instagram_clone.controller;
 
+import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.controller.dto.mypage.GetMyPageResponse;
 import instagram_clone.instagram_clone.controller.dto.mypage.PostFollowRequest;
 import instagram_clone.instagram_clone.domain.Follow;
@@ -25,7 +26,7 @@ public class MyPageController {
     @GetMapping("/users/{userId}/my-page")
     private GetMyPageResponse getMyPage(
             @PathVariable("userId") Long userId,
-            @RequestParam("nickname") String nickname){
+            @RequestParam("nickname") String nickname) throws BaseException {
         User user = userService.findByNickname(nickname);
         return new GetMyPageResponse(user, userId);
     }

@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class HomeFeedResponse{
+public class ResultPost {
     private PostInfo postInfo;
     private List<PostImgUrlDto> postImages;
 
-    public HomeFeedResponse(Post post){
+    public ResultPost(Post post){
         postInfo = new PostInfo(post);
         postImages = post.getPostImgUrls().stream()
                     .map(postImgUrl -> new PostImgUrlDto(postImgUrl))
@@ -40,12 +40,4 @@ public class HomeFeedResponse{
         }
     }
 
-    @Data
-    static class PostImgUrlDto {
-        private String url;
-
-        public PostImgUrlDto(PostImgUrl postImgUrl) {
-            url = postImgUrl.getUrl();
-        }
-    }
 }

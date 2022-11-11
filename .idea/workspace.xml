@@ -13,35 +13,46 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/InstagramCloneApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/InstagramCloneApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$HomeFeedResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PatchPostRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PatchPostResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PostImgUrlDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PostInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PostPostRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController$PostPostResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/config/BaseResponseStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/config/BaseResponseStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController$CommentInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController$GetCommentResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController$PostCommentRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController$PostCommentResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController$PostShortInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController$GetMyPageResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController$PostFollowRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController$PostInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController$UserInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$CreateUserRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$CreateUserRequest2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$CreateUserResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$CreateUserResponse2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$UpdateUserRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$UpdateUserResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController$UserDto.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/HomeFeedRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/LoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/LoginResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Comment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Follow.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Follow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Post.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/HomeFeedResponse$PostImgUrlDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/HomeFeedResponse$PostInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/HomeFeedResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/HomeFeedResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/PostPostRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/post/PostPostRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/user/CreateUserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/user/CreateUserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/user/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/user/LoginResponse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/PostService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/config/BaseResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/config/BaseResponseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/MyPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/PostController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/post/HomeFeedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/post/ResultPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/post/PostPostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/post/PostPostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/CreateUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/CreateUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/PostService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/utils/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/utils/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +118,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="instagram_clone.instagram_clone.controller.dto.post" />
       <recent name="instagram_clone.instagram_clone.controller.dto" />
       <recent name="instagram_clone.instagram_clone.domain" />
       <recent name="instagram_clone.instagram_clone.repository" />

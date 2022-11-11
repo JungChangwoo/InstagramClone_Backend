@@ -47,7 +47,7 @@ public class JwtService {
     }
 
     /*
-    JWT에서 userIdx 추출
+    JWT에서 userId 추출
     @return int
     @throws BaseException
      */
@@ -67,7 +67,7 @@ public class JwtService {
         } catch (Exception ignored) {
             throw new BaseException(INVALID_JWT);
         }
-        // 3. userIdx 추출
+        // 3. userId 추출
         return claims.getBody().get("userId", Long.class);
     }
 

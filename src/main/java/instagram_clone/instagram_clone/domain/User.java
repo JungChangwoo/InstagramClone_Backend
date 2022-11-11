@@ -1,6 +1,7 @@
 package instagram_clone.instagram_clone.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import instagram_clone.instagram_clone.controller.dto.user.CreateUserRequest;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -74,5 +75,15 @@ public class User {
         user.setUserStatus(UserStatus.ACTIVE);
         return user;
     }
-
+    public static User createUser(CreateUserRequest request) {
+        User user = new User();
+        user.setNickname(request.getNickname());
+        user.setPassword(request.getPassword());
+        user.setName(request.getName());
+        user.setPhone(request.getPhone());
+        user.setEmail(request.getEmail());
+        user.setBirth(request.getBirth());
+        user.setUserStatus(UserStatus.ACTIVE);
+        return user;
+    }
 }

@@ -1,5 +1,7 @@
 package instagram_clone.instagram_clone.service;
 
+import instagram_clone.instagram_clone.controller.dto.post.PostImgRequest;
+import instagram_clone.instagram_clone.controller.dto.post.PostImgUrlDto;
 import instagram_clone.instagram_clone.domain.Follow;
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.PostImgUrl;
@@ -45,12 +47,12 @@ public class PostService {
     }
 
     @Transactional
-    public Long postUpload(Long userId, List<String> postImages, String content) {
+    public Long postUpload(Long userId, List<PostImgRequest> postImgRequests, String content) {
         User user = userRepository.findById(userId);
 
         List<PostImgUrl> postImgUrls = new ArrayList<>();
-        for (String postImgUrlString : postImages) {
-            PostImgUrl postImgUrl = PostImgUrl.createPostImgUrl(postImgUrlString);
+        for (PostImgRequest postImgRequest : postImgRequests) {
+            PostImgUrl postImgUrl = PostImgUrl.createPostImgUrl(postImgRequest.getUrl());
             postImgUrls.add(postImgUrl);
         }
 

@@ -1,6 +1,7 @@
 package instagram_clone.instagram_clone.service;
 
 import instagram_clone.instagram_clone.config.BaseException;
+import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.config.BaseResponseStatus;
 import instagram_clone.instagram_clone.controller.dto.user.LoginRequest;
 import instagram_clone.instagram_clone.controller.dto.user.LoginResponse;
@@ -9,11 +10,15 @@ import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.repository.UserRepository;
 import instagram_clone.instagram_clone.utils.JwtService;
 import instagram_clone.instagram_clone.utils.SHA256;
+import instagram_clone.instagram_clone.utils.StringValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static instagram_clone.instagram_clone.config.BaseResponseStatus.*;
+import static instagram_clone.instagram_clone.utils.StringValidation.isEmptyOrNull;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,33 +34,41 @@ public class UserService {
 
     @Transactional
     public Long join(CreateUserRequest request) throws BaseException {
-        User user = User.createUser(request.getNickname(), request.getPassword(), request.getName(), request.getPhone(), request.getEmail(), request.getBirth());
+        validateDuplicatedNickname(request.getNickname());
+        validateDuplicatedEmail(request.getEmail());
 
-        validateDuplicateUserNickname(user);
-        validateDuplicateUserEmail(user);
+        User user = User.createUser(request);
+
         String pwd;
         try {
             pwd = new SHA256().encrypt(user.getPassword());
             user.setPassword(pwd);
         } catch (Exception ignored) {
-            throw new BaseException(BaseResponseStatus.PASSWORD_ENCRYPTION_ERROR);
+            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
         }
+
         userRepository.save(user);
-        // JWT 발급
-        Long userId = user.getId();
-        System.out.println("userId: " + userId);
-        jwtService.createJwt(userId);
         return user.getId();
     }
 
-    private void validateDuplicateUserEmail(User user){
-        List<User> findUsers = userRepository.findByEmail(user.getEmail());
-        if (!findUsers.isEmpty()){
-            throw new IllegalStateException("이미 존재하는 이메일입니다.");
-        }
-    }
-    private void validateDuplicateUserNickname(User user) {
+    public LoginResponse login(LoginRequest request) throws BaseException {
+        validateLogin(request);
 
+        User user = findByNickname(request.getNickname());
+
+        String encryptPwd;
+        try {
+            encryptPwd = new SHA256().encrypt(request.getPassword());
+        } catch (Exception exception){
+            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
+        }
+        if (user.getPassword().equals(encryptPwd)){
+            Long id = user.getId();
+            String jwt = jwtService.createJwt(id);
+            return new LoginResponse(id, jwt);
+        } else {
+            throw new BaseException(FAILED_TO_LOGIN);
+        }
     }
 
     @Transactional
@@ -68,27 +81,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User findByNickname(String nickname){
-        List<User> user = userRepository.findByNickname(nickname);
-        return user.get(0);
-    }
-
-    public LoginResponse login(LoginRequest request) throws BaseException {
-        User user = findByNickname(request.getNickname());
-        String encryptPwd;
-
-        try {
-            encryptPwd = new SHA256().encrypt(request.getPassword());
-        } catch (Exception exception){
-            throw new BaseException(BaseResponseStatus.PASSWORD_ENCRYPTION_ERROR);
+    public User findByNickname(String nickname) throws BaseException {
+        List<User> findUsers = userRepository.findByNickname(nickname);
+        if (findUsers.isEmpty()){
+            throw new BaseException(FAILED_TO_LOGIN);
         }
-        if (user.getPassword().equals(encryptPwd)){
-            Long id = user.getId();
-            String jwt = jwtService.createJwt(id);
-            return new LoginResponse(id, jwt);
-        } else {
-            throw new BaseException(BaseResponseStatus.FAILED_TO_LOGIN);
-        }
+        return findUsers.get(0);
     }
 
     @Transactional
@@ -97,4 +95,32 @@ public class UserService {
         user.setNickname(nickname);
         return user.getId();
     }
+
+    public void validateDuplicatedPhone(String phone) throws BaseException {
+        List<User> findUsers = userRepository.findByPhone(phone);
+        if (!findUsers.isEmpty()){
+            throw new BaseException(DUPLICATED_PHONE);
+        }
+    }
+
+    public void validateDuplicatedEmail(String email) throws BaseException {
+        List<User> findUsers = userRepository.findByEmail(email);
+        if (!findUsers.isEmpty()){
+            throw new BaseException(DUPLICATED_EMAIL);
+        }
+    }
+    private void validateDuplicatedNickname(String nickname) throws BaseException {
+        List<User> findUsers = userRepository.findByNickname(nickname);
+        if (!findUsers.isEmpty()){
+            throw new BaseException(DUPLICATED_NICKNAME);
+        }
+    }
+
+    private void validateLogin(LoginRequest request) throws BaseException {
+        // 공백 검증
+        if (isEmptyOrNull(request.getNickname()) || isEmptyOrNull(request.getPassword())){
+            throw new BaseException(FAILED_TO_LOGIN);
+        }
+    }
+
 }

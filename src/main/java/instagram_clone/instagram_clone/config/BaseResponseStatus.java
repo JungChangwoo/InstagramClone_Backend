@@ -8,6 +8,8 @@ public enum BaseResponseStatus {
      * 1000 : 요청 성공
      */
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
+    DUPLICATE_EMAIL_SUCCESS(true, 1001, "중복되지 않은 이메일입니다."),
+    DUPLICATE_PHONE_SUCCESS(true, 1002, "중복되지 않은 전화번호입니다."),
 
 
     /**
@@ -36,8 +38,10 @@ public enum BaseResponseStatus {
     RESPONSE_ERROR(false, 3000, "값을 불러오는데 실패하였습니다."),
 
     // [POST] /users
+    DUPLICATED_NICKNAME(false, 3012, "중복된 닉네임입니다."),
     DUPLICATED_EMAIL(false, 3013, "중복된 이메일입니다."),
-    FAILED_TO_LOGIN(false,3014,"없는 아이디거나 비밀번호가 틀렸습니다."),
+    DUPLICATED_PHONE(false, 3014, "중복된 전화번호입니다."),
+    FAILED_TO_LOGIN(false,3015,"없는 아이디거나 비밀번호가 틀렸습니다."),
 
 
 
@@ -52,11 +56,6 @@ public enum BaseResponseStatus {
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
     PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");
-
-
-    // 5000 : 필요시 만들어서 쓰세요
-    // 6000 : 필요시 만들어서 쓰세요
-
 
     private final boolean isSuccess;
     private final int code;

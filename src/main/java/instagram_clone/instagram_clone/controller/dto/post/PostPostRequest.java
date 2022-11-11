@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class PostPostRequest {
-    private List<String> postImages;
+    private List<PostImgRequest> postImages;
     private String content;
 }
