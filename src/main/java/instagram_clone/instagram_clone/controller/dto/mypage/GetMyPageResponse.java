@@ -3,6 +3,7 @@ package instagram_clone.instagram_clone.controller.dto.mypage;
 import instagram_clone.instagram_clone.domain.Follow;
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -23,12 +24,9 @@ public class GetMyPageResponse {
     }
 
     @Data
+    @AllArgsConstructor
     static class PostInfo {
-        private String imageUrl;
-
-        public PostInfo(String imageUrl) {
-            this.imageUrl = imageUrl;
-        }
+        private String imgUrl;
     }
 
     @Data

@@ -75,8 +75,8 @@ public class UserController {
     @PatchMapping("/users/{userId}/nickname")
     public BaseResponse<UpdateUserNicknameResponse> updateNickname(
             @PathVariable("userId") Long userId,
-            @RequestBody UpdateUserNicknameRequest request){
-        Long id = userService.updateNickname(userId, request.getNickname());
+            @RequestBody String request){
+        Long id = userService.updateNickname(userId, request);
         return new BaseResponse<>(new UpdateUserNicknameResponse(id));
     }
 
