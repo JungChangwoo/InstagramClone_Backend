@@ -2,6 +2,7 @@ package instagram_clone.instagram_clone.controller.dto.post;
 
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.PostImgUrl;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
