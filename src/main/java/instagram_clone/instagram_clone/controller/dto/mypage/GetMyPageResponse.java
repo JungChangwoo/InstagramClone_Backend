@@ -1,8 +1,6 @@
 package instagram_clone.instagram_clone.controller.dto.mypage;
 
-import instagram_clone.instagram_clone.domain.Follow;
-import instagram_clone.instagram_clone.domain.Post;
-import instagram_clone.instagram_clone.domain.User;
+import instagram_clone.instagram_clone.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,7 +17,9 @@ public class GetMyPageResponse {
         postInfo = new ArrayList<>();
         List<Post> posts = user.getPosts();
         for (Post post : posts) {
-            postInfo.add(new PostInfo(post.getPostImgUrls().get(0).getUrl()));
+            if (post.getStatus().equals(PostStatus.ACTIVE)) {
+                postInfo.add(new PostInfo(post.getPostImgUrls().get(0).getUrl()));
+            }
         }
     }
 
@@ -43,8 +43,8 @@ public class GetMyPageResponse {
             nickname = user.getNickname();
             profileImgUrl = user.getProfileImgUrl();
             numOfPost = user.getPosts().size();
-            follower = user.getFollowerList().size();
-            followee = user.getFollowingList().size();
+            follower = this.get_follow_count(user.getFollowerList());
+            followee = this.get_follow_count(user.getFollowingList());
             name = user.getName();
             List<Follow> follows = user.getFollowerList();
             isFollowed = "N";
@@ -54,6 +54,16 @@ public class GetMyPageResponse {
                 }
             }
 
+        }
+
+        private int get_follow_count(List<Follow> follows){
+            int count = 0;
+            for (Follow follow : follows){
+                if (follow.getStatus().equals(FollowStatus.ACTIVE)){
+                    count += 1;
+                }
+            }
+            return count;
         }
     }
 }

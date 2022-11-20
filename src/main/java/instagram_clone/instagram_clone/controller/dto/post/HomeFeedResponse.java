@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class HomeFeedResponse {
     private List<ResultPost> post;
 
-    public HomeFeedResponse(List<Post> posts){
+    public HomeFeedResponse(List<Post> posts, Long userId){
         post = new ArrayList<>();
         // Post --> ResultPost
         List<ResultPost> resultPosts = posts.stream()
-                .map(o -> new ResultPost(o))
+                .map(o -> new ResultPost(o, userId))
                 .collect(Collectors.toList());
 
         for (ResultPost resultPost : resultPosts){

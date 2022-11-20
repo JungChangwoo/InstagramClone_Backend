@@ -63,6 +63,19 @@ public class UserController {
         }
     }
 
+    @PatchMapping("/users/{userId}/nickname")
+    public BaseResponse<UpdateUserNicknameResponse> updateNickname(
+            @PathVariable("userId") Long userId,
+            @RequestBody String request){
+        try {
+            validateJWT(userId);
+        } catch (BaseException e) {
+            return new BaseResponse<>(e.getStatus());
+        }
+        Long id = userService.updateNickname(userId, request);
+        return new BaseResponse<>(new UpdateUserNicknameResponse(id));
+    }
+
     @GetMapping("/users")
     public List<GetUserResponse> members(){
         List<User> findUsers = userService.findUsers();
@@ -72,21 +85,11 @@ public class UserController {
         return collect;
     }
 
-    @PatchMapping("/users/{userId}/nickname")
-    public BaseResponse<UpdateUserNicknameResponse> updateNickname(
-            @PathVariable("userId") Long userId,
-            @RequestBody String request){
-        Long id = userService.updateNickname(userId, request);
-        return new BaseResponse<>(new UpdateUserNicknameResponse(id));
-    }
-
-    @PutMapping("/users/{id}")
-    public UpdateUserResponse updateUser(
-            @PathVariable("id") Long id,
-            @RequestBody UpdateUserRequest request){
-        userService.update(id, request.getName());
-        User findUser = userService.findOne(id);
-        return new UpdateUserResponse(findUser.getId(), findUser.getName());
+    private void validateJWT(Long userId) throws BaseException {
+        Long userIdByJwt = jwtService.getUserIdx();
+        if (userId != userIdByJwt){
+            throw new BaseException(BaseResponseStatus.INVALID_USER_JWT);
+        }
     }
 
 }

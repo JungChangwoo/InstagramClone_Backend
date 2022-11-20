@@ -32,6 +32,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> searchUsers(String nickname) {
+        return userRepository.searchAll(nickname);
+    }
+
     @Transactional
     public Long join(CreateUserRequest request) throws BaseException {
         validateDuplicatedNickname(request.getNickname());

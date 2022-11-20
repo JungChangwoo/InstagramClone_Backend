@@ -3,8 +3,14 @@ package instagram_clone.instagram_clone.controller;
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.config.BaseResponseStatus;
+import instagram_clone.instagram_clone.controller.dto.DeletePostResponse;
+import instagram_clone.instagram_clone.controller.dto.PostLikeResponse;
 import instagram_clone.instagram_clone.controller.dto.post.*;
+import instagram_clone.instagram_clone.domain.Like;
+import instagram_clone.instagram_clone.domain.LikeStatus;
 import instagram_clone.instagram_clone.domain.Post;
+import instagram_clone.instagram_clone.domain.PostStatus;
+import instagram_clone.instagram_clone.service.LikeService;
 import instagram_clone.instagram_clone.service.PostService;
 import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +26,7 @@ public class PostController {
 
     private final PostService postService;
     private final JwtService jwtService;
+    private final LikeService likeService;
 
     @GetMapping("/posts/{userId}/main-feed")
     public BaseResponse<HomeFeedResponse> getHomeFeed(@PathVariable("userId") Long userId) {
@@ -30,9 +37,20 @@ public class PostController {
         }
 
         List<Post> posts = postService.findHomeFeeds(userId);
-        HomeFeedResponse homeFeedResponse = new HomeFeedResponse(posts);
+        HomeFeedResponse homeFeedResponse = new HomeFeedResponse(posts, userId);
 
         return new BaseResponse<>(homeFeedResponse);
+    }
+
+    @PostMapping("/posts/{userId}/likes")
+    public BaseResponse<PostLikeResponse> postLike(@PathVariable("userId") Long userId, @RequestBody Long postId){
+        try {
+            validateJWT(userId);
+        } catch (BaseException e) {
+            return new BaseResponse<>(e.getStatus());
+        }
+        Like like = likeService.like(userId, postId);
+        return new BaseResponse<>(new PostLikeResponse(like.getStatus().name()));
     }
 
     @PostMapping("/posts/{userId}")
@@ -59,6 +77,17 @@ public class PostController {
         Long postId = postService.update(request.getPostId(), request.getContent());
         PatchPostResponse patchPostResponse = new PatchPostResponse(postId);
         return new BaseResponse<>(patchPostResponse);
+    }
+
+    @PatchMapping("posts/{userId}/status")
+    public BaseResponse<DeletePostResponse> deletePost(@PathVariable("userId") Long userId, @RequestBody Long postId){
+        try {
+            validateJWT(userId);
+        } catch (BaseException e) {
+            e.printStackTrace();
+        }
+        Long id = postService.deletePost(postId);
+        return new BaseResponse<>(new DeletePostResponse(id));
     }
 
     private void validateJWT(Long userId) throws BaseException {

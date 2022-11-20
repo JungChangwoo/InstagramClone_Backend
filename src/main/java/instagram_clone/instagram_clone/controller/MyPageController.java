@@ -33,19 +33,17 @@ public class MyPageController {
         return new BaseResponse<>(new GetMyPageResponse(user, userId));
     }
 
-    @PostMapping("/users/{userId}/following")
+    @PostMapping("/follows")
     private BaseResponse<PostFollowResponse> follow(
-            @PathVariable("userId") Long userId,
             @RequestBody PostFollowRequest request){
-        Long id = followService.follow(userId, request.getFollowingNickname());
+        Long id = followService.follow(request.getUserId(), request.getFollowingNickname());
         return new BaseResponse<>(new PostFollowResponse(id));
     }
 
-    @PatchMapping("/users/{userId}/following/status")
+    @PatchMapping("/follows/status")
     private BaseResponse<PostFollowResponse> unFollow(
-            @PathVariable("userId") Long userId,
             @RequestBody PostFollowRequest request){
-        Long id = followService.unFollow(userId, request.getFollowingNickname());
+        Long id = followService.unFollow(request.getUserId(), request.getFollowingNickname());
         return new BaseResponse<>(new PostFollowResponse(id));
     }
 

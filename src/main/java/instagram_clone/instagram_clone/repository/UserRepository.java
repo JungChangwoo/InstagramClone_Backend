@@ -19,6 +19,12 @@ public class UserRepository {
                 .getResultList();
     }
 
+    public List<User> searchAll(String nickname) {
+        return em.createQuery("select u from User u where u.nickname like :nickname", User.class)
+                .setParameter("nickname", "%"+nickname+"%")
+                .getResultList();
+    }
+
     public User findById(Long id) {
         return em.find(User.class, id);
     }

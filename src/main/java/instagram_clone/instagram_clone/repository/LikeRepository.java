@@ -1,18 +1,19 @@
 package instagram_clone.instagram_clone.repository;
 
-import instagram_clone.instagram_clone.domain.Comment;
+import instagram_clone.instagram_clone.domain.Like;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class CommentRepository {
+public class LikeRepository {
 
     @PersistenceContext
     private EntityManager em;
 
-    public void save(Comment comment) {
-        em.persist(comment);
+
+    public void save(Like like) {
+        em.persist(like);
     }
 }

@@ -29,7 +29,7 @@ public class Post {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private PostStatus status;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -45,6 +45,9 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Like> likes = new ArrayList<>();
+
     //==연관관계 메서드==//
     public void addPostImgUrl(PostImgUrl postImgUrl){
         postImgUrls.add(postImgUrl);
@@ -58,6 +61,11 @@ public class Post {
         for (PostImgUrl postImgUrl : postImgUrls){
             post.addPostImgUrl(postImgUrl);
         }
+        post.setStatus(PostStatus.ACTIVE);
         return post;
+    }
+
+    public void cancel() {
+        this.setStatus(PostStatus.DELETED);
     }
 }
