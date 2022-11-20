@@ -49,7 +49,7 @@ public class GetMyPageResponse {
             List<Follow> follows = user.getFollowerList();
             isFollowed = "N";
             for (Follow follow : follows) {
-                if (follow.getFromUser().equals(userId)) {
+                if (follow.getFromUser().getId().equals(userId)) {
                     isFollowed = "Y";
                 }
             }

@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity @Table(name = "like")
+@Entity @Table(name = "likes")
 @Getter @Setter
 @EntityListeners(AuditingEntityListener.class)
 public class Like {
