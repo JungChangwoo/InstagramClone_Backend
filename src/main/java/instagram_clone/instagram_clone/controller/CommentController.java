@@ -6,18 +6,14 @@ import instagram_clone.instagram_clone.config.BaseResponseStatus;
 import instagram_clone.instagram_clone.controller.dto.comment.GetCommentResponse;
 import instagram_clone.instagram_clone.controller.dto.comment.PostCommentRequest;
 import instagram_clone.instagram_clone.controller.dto.comment.PostCommentResponse;
-import instagram_clone.instagram_clone.domain.Comment;
 import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.service.CommentService;
+import instagram_clone.instagram_clone.service.CommentServiceImpl;
 import instagram_clone.instagram_clone.service.PostService;
+import instagram_clone.instagram_clone.service.PostServiceImpl;
 import instagram_clone.instagram_clone.utils.JwtService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor

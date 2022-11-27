@@ -1,14 +1,13 @@
 package instagram_clone.instagram_clone.controller;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import instagram_clone.instagram_clone.config.BaseException;
 import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.config.BaseResponseStatus;
-import instagram_clone.instagram_clone.controller.dto.user.UpdateUserNicknameRequest;
 import instagram_clone.instagram_clone.controller.dto.user.UpdateUserNicknameResponse;
 import instagram_clone.instagram_clone.controller.dto.user.*;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.service.UserService;
+import instagram_clone.instagram_clone.service.UserServiceImpl;
 import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ public class UserController {
     private final JwtService jwtService;
 
     @PostMapping("/users/join")
-    public BaseResponse<CreateUserResponse> saveUser(@RequestBody CreateUserRequest request) {
+    public BaseResponse<CreateUserResponse> saveUser(@RequestBody PostUserRequest request) {
         try {
             Long id = userService.join(request);
             return new BaseResponse<>(new CreateUserResponse(id));
@@ -66,18 +65,18 @@ public class UserController {
     @PatchMapping("/users/{userId}/nickname")
     public BaseResponse<UpdateUserNicknameResponse> updateNickname(
             @PathVariable("userId") Long userId,
-            @RequestBody String request){
+            @RequestBody String nickname) throws BaseException {
         try {
             validateJWT(userId);
         } catch (BaseException e) {
             return new BaseResponse<>(e.getStatus());
         }
-        Long id = userService.updateNickname(userId, request);
+        Long id = userService.updateNickname(userId, nickname);
         return new BaseResponse<>(new UpdateUserNicknameResponse(id));
     }
 
     @GetMapping("/users")
-    public List<GetUserResponse> members(){
+    public List<GetUserResponse> getUsers(){
         List<User> findUsers = userService.findUsers();
         List<GetUserResponse> collect = findUsers.stream()
                 .map(m -> new GetUserResponse(m.getId(), m.getNickname(), m.getProfileImgUrl()))

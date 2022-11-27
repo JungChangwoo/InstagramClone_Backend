@@ -2,18 +2,15 @@ package instagram_clone.instagram_clone.controller;
 
 import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.controller.dto.search.SearchUserInfo;
-import instagram_clone.instagram_clone.controller.dto.search.SearchUserResponse;
-import instagram_clone.instagram_clone.controller.dto.user.GetUserResponse;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.service.UserService;
+import instagram_clone.instagram_clone.service.UserServiceImpl;
 import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

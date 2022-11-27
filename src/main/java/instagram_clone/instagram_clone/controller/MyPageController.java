@@ -5,18 +5,14 @@ import instagram_clone.instagram_clone.config.BaseResponse;
 import instagram_clone.instagram_clone.controller.dto.mypage.GetMyPageResponse;
 import instagram_clone.instagram_clone.controller.dto.mypage.PostFollowRequest;
 import instagram_clone.instagram_clone.controller.dto.mypage.PostFollowResponse;
-import instagram_clone.instagram_clone.domain.Follow;
-import instagram_clone.instagram_clone.domain.Post;
 import instagram_clone.instagram_clone.domain.User;
 //import instagram_clone.instagram_clone.service.FollowService;
 import instagram_clone.instagram_clone.service.FollowService;
+import instagram_clone.instagram_clone.service.FollowServiceImpl;
 import instagram_clone.instagram_clone.service.UserService;
-import lombok.Data;
+import instagram_clone.instagram_clone.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

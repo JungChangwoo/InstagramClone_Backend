@@ -13,12 +13,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/mypage/GetMyPageResponse$UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/mypage/GetMyPageResponse$UserInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/Post.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/config/BaseResponseStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/config/BaseResponseStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/MyPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/SearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/controller/dto/user/CreateUserRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/domain/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/FollowService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/utils/StringValidation.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/instagram_clone/instagram_clone/utils/StringValidation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/mypage/GetMyPageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/mypage/GetMyPageResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/config/BaseResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/config/BaseResponseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/MyPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/dto/user/PostUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/FollowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/utils/StringValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/utils/StringValidation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +47,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -58,7 +72,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/PostController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/controller/MyPageController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/repository/PostRepository.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/service/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/UserStatus.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/Follow.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/instagram_clone/instagram_clone/domain/Comment.java" root0="FORCE_HIGHLIGHTING" />

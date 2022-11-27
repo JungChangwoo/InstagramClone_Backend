@@ -7,18 +7,15 @@ import instagram_clone.instagram_clone.controller.dto.DeletePostResponse;
 import instagram_clone.instagram_clone.controller.dto.PostLikeResponse;
 import instagram_clone.instagram_clone.controller.dto.post.*;
 import instagram_clone.instagram_clone.domain.Like;
-import instagram_clone.instagram_clone.domain.LikeStatus;
 import instagram_clone.instagram_clone.domain.Post;
-import instagram_clone.instagram_clone.domain.PostStatus;
 import instagram_clone.instagram_clone.service.LikeService;
+import instagram_clone.instagram_clone.service.LikeServiceImpl;
 import instagram_clone.instagram_clone.service.PostService;
 import instagram_clone.instagram_clone.utils.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
