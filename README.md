@@ -9,7 +9,14 @@
 👉 <b>팔로우</b>: 팔로우, 언팔로우 기능을 제공하여 원하는 유저의 게시글을 확인할 수 있습니다. <br>
 
 ## 📸 User Screen
-
+<p align="center">
+<img src="https://user-images.githubusercontent.com/55183957/209314411-0a61ce06-c6c0-4787-abe8-fcc486320815.jpg" width="15%" height="30%">
+<img src="https://user-images.githubusercontent.com/55183957/209313544-e1e2f96a-9477-4fde-809e-ed137b2958fa.jpg" width="15%" height="30%">
+<img src="https://user-images.githubusercontent.com/55183957/209312685-dd582366-463e-44a5-b56a-f2dd668f686b.jpg" width="15%" height="30%">
+<img src="https://user-images.githubusercontent.com/55183957/209313060-540e2879-d0ac-45ad-bb76-ffb4c31a5df3.jpg" width="15%" height="30%">
+<img src="https://user-images.githubusercontent.com/55183957/209313060-540e2879-d0ac-45ad-bb76-ffb4c31a5df3.jpg" width="15%" height="30%">
+<img src="https://user-images.githubusercontent.com/55183957/209313060-540e2879-d0ac-45ad-bb76-ffb4c31a5df3.jpg" width="15%" height="30%">
+</p>
 
 ## 📌 Server Architecture
 
