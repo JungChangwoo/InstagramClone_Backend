@@ -26,14 +26,14 @@ public class CommentController {
     @GetMapping("/posts/{userId}/{postId}/comments")
     public BaseResponse<GetCommentResponse> getComments(
             @PathVariable("userId") Long userId,
-            @PathVariable("postId") Long postId){
+            @PathVariable("postId") Long postId) throws BaseException {
         try {
             validateJWT(userId);
         } catch (BaseException e) {
             return new BaseResponse<>(e.getStatus());
         }
 
-        Post post = postService.findOne(postId);
+        Post post = commentService.findOneWithComment(postId);
         GetCommentResponse response = new GetCommentResponse(post);
         return new BaseResponse<>(response);
     }

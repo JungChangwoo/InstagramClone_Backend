@@ -26,11 +26,11 @@ public class FollowRepositoryImpl implements FollowRepository{
 
     public List<Follow> findByUserId(Long fromUserId, Long toUserId) {
         return em.createQuery("select f from Follow f " +
-                "where f.fromUser.id = :fromUserId " +
-                "and f.toUser.id = :toUserId", Follow.class)
-                .setParameter("fromUserId", fromUserId)
-                .setParameter("toUserId", toUserId)
-                .getResultList();
+                                "where f.fromUser.id = :fromUserId " +
+                                "and f.toUser.id = :toUserId", Follow.class)
+                                .setParameter("fromUserId", fromUserId)
+                                .setParameter("toUserId", toUserId)
+                                .getResultList();
     }
 
     public Follow findById(Long id) {
@@ -39,9 +39,31 @@ public class FollowRepositoryImpl implements FollowRepository{
 
     public List<Follow> findByFromUserId(Long userId) {
         return em.createQuery("select f from Follow f " +
-                        "where f.fromUser.id = : id " +
+                                "where f.fromUser.id = : id " +
+                                "and f.status = :status", Follow.class)
+                                .setParameter("id", userId)
+                                .setParameter("status", FollowStatus.ACTIVE)
+                                .getResultList();
+    }
+
+    @Override
+    public List<Follow> findByFromUserIdWithToUser(Long userId) {
+        return em.createQuery("select distinct f from Follow f " +
+                                "join fetch f.toUser tu " +
+                                "where f.fromUser.id = : id " +
+                                "and f.status = :status", Follow.class)
+                                .setParameter("id", userId)
+                                .setParameter("status", FollowStatus.ACTIVE)
+                                .getResultList();
+    }
+
+    @Override
+    public List<Follow> findByToUserIdWithFromUser(Long toUserId) {
+        return em.createQuery("select distinct f from Follow f " +
+                        "join fetch f.fromUser tu " +
+                        "where f.toUser.id = : id " +
                         "and f.status = :status", Follow.class)
-                .setParameter("id", userId)
+                .setParameter("id", toUserId)
                 .setParameter("status", FollowStatus.ACTIVE)
                 .getResultList();
     }

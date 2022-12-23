@@ -1,9 +1,12 @@
 package instagram_clone.instagram_clone.controller.dto.comment;
 
+import instagram_clone.instagram_clone.config.BaseException;
+import instagram_clone.instagram_clone.config.BaseResponseStatus;
 import instagram_clone.instagram_clone.domain.Comment;
 import instagram_clone.instagram_clone.domain.Post;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,11 +15,15 @@ public class GetCommentResponse {
     private PostShortInfo postShortInfo;
     private List<CommentInfo> commentInfoList;
 
-    public GetCommentResponse(Post post) {
+    public GetCommentResponse(Post post) throws BaseException {
         postShortInfo = new PostShortInfo(post);
-        commentInfoList = post.getComments().stream()
-                .map(comment -> new CommentInfo(comment))
-                .collect(Collectors.toList());
+        try {
+            commentInfoList = post.getComments().stream()
+                    .map(comment -> new CommentInfo(comment))
+                    .collect(Collectors.toList());
+        } catch (Exception e){
+            commentInfoList = new ArrayList<>();
+        }
     }
 
     @Data

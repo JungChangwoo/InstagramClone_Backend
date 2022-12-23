@@ -9,4 +9,6 @@ public interface FollowRepository {
     public List<Follow> findByUserId(Long fromUserId, Long toUserId);
     public Follow findById(Long id);
     public List<Follow> findByFromUserId(Long userId);
+    public List<Follow> findByFromUserIdWithToUser(Long userId);
+    List<Follow> findByToUserIdWithFromUser(Long userId);
 }

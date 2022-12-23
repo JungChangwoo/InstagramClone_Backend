@@ -6,7 +6,6 @@ import instagram_clone.instagram_clone.controller.dto.user.LoginResponse;
 import instagram_clone.instagram_clone.controller.dto.user.PostUserRequest;
 import instagram_clone.instagram_clone.domain.User;
 import instagram_clone.instagram_clone.repository.UserRepository;
-import instagram_clone.instagram_clone.repository.UserRepositoryImpl;
 import instagram_clone.instagram_clone.utils.JwtService;
 import instagram_clone.instagram_clone.utils.SHA256;
 import lombok.RequiredArgsConstructor;
@@ -73,10 +72,7 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-    public User findOne(Long id) {
-        return userRepository.findById(id);
-    }
-
+    @Override
     public User findByNickname(String nickname) throws BaseException {
         List<User> findUsers = userRepository.findByNickname(nickname);
         if (findUsers.isEmpty()){
@@ -84,6 +80,22 @@ public class UserServiceImpl implements UserService{
         }
         return findUsers.get(0);
     }
+
+    @Override
+    public User findOne(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public User findByNicknameWithPost(String nickname) throws BaseException {
+        List<User> findUsersWithPost = userRepository.findByNicknameWithPost(nickname);
+        if (findUsersWithPost.isEmpty()){
+            return findByNickname(nickname);
+        }
+        return findUsersWithPost.get(0);
+    }
+
+
 
     @Transactional
     public Long updateNickname(Long userId, String nickname) throws BaseException {
@@ -108,7 +120,7 @@ public class UserServiceImpl implements UserService{
     }
 
     private void validateDuplicatedNickname(String nickname) throws BaseException {
-        List<User> findUsers = userRepository.findByNickname(nickname);
+        List<User> findUsers = userRepository.findByNicknameWithPost(nickname);
         if (!findUsers.isEmpty()){
             throw new BaseException(DUPLICATED_NICKNAME);
         }

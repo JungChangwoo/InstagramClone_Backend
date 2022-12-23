@@ -29,8 +29,10 @@ public class UserRepositoryImpl implements UserRepository{
         return em.find(User.class, id);
     }
 
-    public List<User> findByNickname(String nickname) {
-        return em.createQuery("select u from User u where u.nickname = : nickname", User.class)
+    public List<User> findByNicknameWithPost(String nickname) {
+        return em.createQuery("select distinct u from User u" +
+                                " join fetch u.posts p" +
+                                " where u.nickname = : nickname", User.class)
                 .setParameter("nickname", nickname)
                 .getResultList();
     }
@@ -48,6 +50,14 @@ public class UserRepositoryImpl implements UserRepository{
     public List<User> findByPhone(String phoneNum) {
         return em.createQuery("select u from User u where u.phone = : phone", User.class)
                 .setParameter("phone", phoneNum)
+                .getResultList();
+    }
+
+    @Override
+    public List<User> findByNickname(String nickname) {
+        return em.createQuery("select u from User u" +
+                        " where u.nickname = : nickname", User.class)
+                .setParameter("nickname", nickname)
                 .getResultList();
     }
 }

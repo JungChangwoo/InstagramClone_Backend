@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -25,5 +28,15 @@ public class CommentServiceImpl implements CommentService{
         Comment comment = Comment.createComment(user, post, content);
         commentRepository.save(comment);
         return comment.getId();
+    }
+
+    @Override
+    public Post findOneWithComment(Long postId) {
+        Optional<Post> postWithComment = postRepository.findByIdWithComment(postId);
+        if (postWithComment.isPresent() == false){
+            return postRepository.findById(postId);
+        } else {
+            return postWithComment.get();
+        }
     }
 }

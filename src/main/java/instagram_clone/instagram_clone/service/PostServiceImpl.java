@@ -22,7 +22,7 @@ public class PostServiceImpl implements PostService{
 
     public List<Post> findHomeFeeds(Long userId) {
         // 팔로잉하는 유저의 게시물
-        List<Follow> followees = followRepository.findByFromUserId(userId);
+        List<Follow> followees = followRepository.findByFromUserIdWithToUser(userId);
         List<Post> posts = new ArrayList<>();
         for (Follow follow : followees) {
             if (follow.getStatus().equals(FollowStatus.ACTIVE)){
@@ -35,8 +35,7 @@ public class PostServiceImpl implements PostService{
             }
         }
         // 자신의 게시물
-        User user = userRepository.findById(userId);
-        List<Post> userPosts = user.getPosts();
+        List<Post> userPosts = postRepository.findAllByUserIdWithPIU(userId);
         for (Post post : userPosts){
             if (post.getStatus().equals(PostStatus.ACTIVE)) {
                 posts.add(post);
