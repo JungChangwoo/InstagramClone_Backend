@@ -23,7 +23,9 @@
 <img src="https://user-images.githubusercontent.com/55183957/209316477-2c16096a-d0bd-4bc3-bcc0-e4d5000321e1.jpg" width="17%" height="30%">
 </p>
 
-## 📌 Server Architecture
-
-
-
+## 📌 기술 스택
+|Category|Stack|
+|------|---|
+|Front-End|Android - Android Jetpack, Retrofit2|
+|Back-End|Spring Boot, Spring MVC, JPA, JWT|
+|Dev-Ops|AWS EC2, AWS RDS, MySQL, NginX|
