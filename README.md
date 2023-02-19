@@ -28,5 +28,5 @@
 |Category|Stack|
 |------|---|
 |Front-End|Android - Android Jetpack, Retrofit2|
-|Back-End|Spring Boot, Spring MVC, JPA, JWT|
-|Dev-Ops|AWS EC2, AWS RDS, MySQL, NginX|
+|Back-End|Spring Boot, Spring MVC, JPA, JWT, MySQL, Nginx|
+|Infra|AWS EC2, AWS RDS|
